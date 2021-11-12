@@ -2,15 +2,11 @@ import AuthenticationProvider, {
   AuthenticationOptions,
   AutoLogin,
   LogginIn,
-  Public,
-  RequireAuth,
 } from '@iad-os/react-ghost-auth';
 import axios from 'axios';
 import React from 'react';
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import LogoutButton from './components/LogoutButton';
-import UserInfo from './components/UserInfo';
 import ProtectedRoutes from './Routes/ProtectedRoutes';
 import PublicRoutes from './Routes/PublicRoutes';
 
