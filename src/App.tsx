@@ -7,10 +7,12 @@ import AuthenticationProvider, {
 } from '@iad-os/react-ghost-auth';
 import axios from 'axios';
 import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import LogoutButton from './components/LogoutButton';
 import UserInfo from './components/UserInfo';
+import ProtectedRoutes from './Routes/ProtectedRoutes';
+import PublicRoutes from './Routes/PublicRoutes';
 
 const defaultAuthOpts: AuthenticationOptions = {
   authorization_endpoint:
@@ -32,26 +34,9 @@ function App() {
     <>
       <AuthenticationProvider options={defaultAuthOpts} axios={axios}>
         <Routes>
-          <Route
-            path="/protected"
-            element={
-              <RequireAuth>
-                <div>Protected page 🔒</div>
-                <Link to={'/'}>Go to Public page</Link>
-                <UserInfo />
-                <LogoutButton />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <Public>
-                <div>Public page 🌐</div>
-                <Link to={'/protected'}>Go to Protected page</Link>
-              </Public>
-            }
-          />
+          <Route path="/" element={<Navigate to="/public" />} />
+          <Route path="/protected/*" element={<ProtectedRoutes />} />
+          <Route path="/public/*" element={<PublicRoutes />} />
         </Routes>
         <LogginIn>
           <h2>🔄 Loading...</h2>
