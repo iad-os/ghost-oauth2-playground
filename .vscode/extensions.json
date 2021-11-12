@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "clinyong.vscode-css-modules",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "mhutchie.git-graph",
+    "usernamehw.errorlens",
+    "apollographql.vscode-apollo",
+    "dsznajder.es7-react-js-snippets",
+    "mikestead.dotenv",
+    "ms-vsliveshare.vsliveshare"
+  ]
+}
