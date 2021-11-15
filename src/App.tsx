@@ -3,11 +3,13 @@ import AuthenticationProvider, {
   AutoLogin,
   LogginIn,
 } from '@iad-os/react-ghost-auth';
+import { createTheme, ThemeProvider, useMediaQuery } from '@mui/material';
 import axios from 'axios';
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import GhostAppBar from './components/GhostAppBar';
+import ColorModeProvider from './contexts/ColorMode';
 import ProtectedRoutes from './Routes/ProtectedRoutes';
 import PublicRoutes from './Routes/PublicRoutes';
 
@@ -27,8 +29,20 @@ const defaultAuthOpts: AuthenticationOptions = {
 };
 
 function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode]
+  );
+
   return (
-    <>
+    <ColorModeProvider>
       <AuthenticationProvider options={defaultAuthOpts} axios={axios}>
         <GhostAppBar />
         <Routes>
@@ -42,7 +56,7 @@ function App() {
         </LogginIn>
         <AutoLogin />
       </AuthenticationProvider>
-    </>
+    </ColorModeProvider>
   );
 }
 

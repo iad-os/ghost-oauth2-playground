@@ -1,5 +1,6 @@
-import React from 'react';
 import Editor, { EditorProps } from '@monaco-editor/react';
+import { useTheme } from '@mui/material';
+import React from 'react';
 
 const monacoOptions = {
   acceptSuggestionOnCommitCharacter: true,
@@ -61,11 +62,15 @@ const monacoOptions = {
   minimap: { enabled: false },
 };
 
-function MonacoEditor(props: Omit<EditorProps, 'options'>) {
+function MonacoEditor(props: Omit<EditorProps, 'options' | 'theme'>) {
+  const theme = useTheme();
+
   return (
-    <div>
-      <Editor {...props} options={monacoOptions} />
-    </div>
+    <Editor
+      {...props}
+      theme={theme.palette.mode === 'dark' ? 'vs-dark' : ''}
+      options={monacoOptions}
+    />
   );
 }
 

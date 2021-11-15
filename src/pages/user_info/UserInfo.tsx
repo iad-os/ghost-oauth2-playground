@@ -9,12 +9,11 @@ function UserInfo() {
   return (
     <Container fixed>
       <span>
-        <h2>👻 User info </h2>
+        <h2>User info </h2>
       </span>
       <MonacoEditor
         height="20vh"
         language="json"
-        theme="dark"
         value={JSON.stringify(userInfo(), null, 2)}
       />
     </Container>
