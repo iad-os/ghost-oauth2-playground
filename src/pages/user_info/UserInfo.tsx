@@ -16,9 +16,6 @@ function UserInfo() {
         language="json"
         value={JSON.stringify(userInfo(), null, 2)}
       />
-      <Button variant="outlined" color="secondary">
-        CIAO
-      </Button>
     </Container>
   );
 }
