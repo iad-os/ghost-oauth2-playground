@@ -25,13 +25,13 @@ function GhostAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky">
         <Toolbar>
-          <Typography component="div" sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1 }}>
             <Button
               onClick={() => navigate(isAuthenticated() ? '/protected' : '/')}
             >
-              👻 Oauth2 Playground
+              <Typography>👻 Oauth2 Playground</Typography>
             </Button>
-          </Typography>
+          </Box>
           <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
             {theme.palette.mode === 'dark' ? (
               <Brightness7Icon />
