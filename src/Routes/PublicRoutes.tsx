@@ -11,7 +11,7 @@ function PublicRouters() {
           path="/"
           element={
             <>
-              <div>Public page 🌐</div>
+              <h2>Public page 🌐</h2>
               <Link to={'/protected'}>Go to Protected page</Link>
             </>
           }

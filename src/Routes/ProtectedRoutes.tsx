@@ -8,7 +8,7 @@ import UserInfo from '../components/UserInfo';
 function ProtectedRouters() {
   return (
     <RequireAuth>
-      <div>Protected page 🔒</div>
+      <h2>Protected page 🔒</h2>
       <Routes>
         <Route
           path="/"

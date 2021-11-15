@@ -30,9 +30,10 @@ function App() {
     <>
       <AuthenticationProvider options={defaultAuthOpts} axios={axios}>
         <Routes>
-          <Route path="/" element={<Navigate to="/public" />} />
           <Route path="/protected/*" element={<ProtectedRoutes />} />
           <Route path="/public/*" element={<PublicRoutes />} />
+          <Route path="/" element={<Navigate to="/public" />} />
+          <Route path="/*" element={<h2>⚠ OOPS... Page not found! ⚠</h2>} />
         </Routes>
         <LogginIn>
           <h2>🔄 Loading...</h2>
