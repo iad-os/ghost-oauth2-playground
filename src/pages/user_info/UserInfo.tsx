@@ -12,7 +12,7 @@ function UserInfo() {
         <h2>User info </h2>
       </span>
       <MonacoEditor
-        height="20vh"
+        height="40vh"
         language="json"
         value={JSON.stringify(userInfo(), null, 2)}
       />

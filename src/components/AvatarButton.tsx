@@ -1,8 +1,8 @@
+import React, { useRef, useState } from 'react';
 import { useAuthentication } from '@iad-os/react-ghost-auth';
 import {
   Avatar,
   Button,
-  ButtonGroup,
   ClickAwayListener,
   Divider,
   Grow,
@@ -12,7 +12,6 @@ import {
   Popper,
 } from '@mui/material';
 import md5 from 'md5';
-import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AvatarButton() {
@@ -23,11 +22,11 @@ function AvatarButton() {
 
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleToggle = () => {
+  function handleToggle() {
     setOpen(prevOpen => !prevOpen);
-  };
+  }
 
-  const handleClose = (event: Event) => {
+  function handleClose(event: Event) {
     if (
       anchorRef.current &&
       anchorRef.current.contains(event.target as HTMLElement)
@@ -36,7 +35,7 @@ function AvatarButton() {
     }
 
     setOpen(false);
-  };
+  }
 
   function getAvatarUrl() {
     const userInfoData = userInfo();
@@ -52,13 +51,14 @@ function AvatarButton() {
       }`;
     }
   }
+
   return (
-    <React.Fragment>
-      <ButtonGroup ref={anchorRef}>
+    <>
+      <div ref={anchorRef}>
         <Button onClick={handleToggle}>
           <Avatar alt="avatar" src={getAvatarUrl()} />
         </Button>
-      </ButtonGroup>
+      </div>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
@@ -77,7 +77,7 @@ function AvatarButton() {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="split-button-menu">
-                  <MenuItem onClick={() => navigate('/protected/user')}>
+                  <MenuItem onClick={() => navigate('/protected/users')}>
                     User info
                   </MenuItem>
                   <Divider />
@@ -88,7 +88,7 @@ function AvatarButton() {
           </Grow>
         )}
       </Popper>
-    </React.Fragment>
+    </>
   );
 }
 

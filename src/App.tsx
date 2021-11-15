@@ -3,7 +3,7 @@ import AuthenticationProvider, {
   AutoLogin,
   LogginIn,
 } from '@iad-os/react-ghost-auth';
-import { createTheme, ThemeProvider, useMediaQuery } from '@mui/material';
+import { createTheme, useMediaQuery } from '@mui/material';
 import axios from 'axios';
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -20,27 +20,15 @@ const defaultAuthOpts: AuthenticationOptions = {
     'https://login.iad2.eu/auth/realms/iad-developers/protocol/openid-connect/token',
   client_id: 'react-ghost-oidc',
   requested_scopes: 'openid',
-  redirect_uri: 'http://localhost:3001/protected',
+  redirect_uri: 'http://localhost:3000/protected',
   end_session_endpoint:
     'https://login.iad2.eu/auth/realms/iad-developers/protocol/openid-connect/logout',
   realm: 'iad-developers',
   serviceUrl: '',
-  redirect_logout_uri: 'http://localhost:3001',
+  redirect_logout_uri: 'http://localhost:3000',
 };
 
 function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode]
-  );
-
   return (
     <ColorModeProvider>
       <AuthenticationProvider options={defaultAuthOpts} axios={axios}>

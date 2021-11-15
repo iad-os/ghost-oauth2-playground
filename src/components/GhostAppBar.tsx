@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useColorMode } from '../contexts/ColorMode';
 import AvatarButton from './AvatarButton';
 
@@ -18,12 +19,18 @@ function GhostAppBar() {
 
   const { toggleColorMode } = useColorMode();
 
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            👻 Oauth2 Playground
+          <Typography component="div" sx={{ flexGrow: 1 }}>
+            <Button
+              onClick={() => navigate(isAuthenticated() ? '/protected' : '/')}
+            >
+              👻 Oauth2 Playground
+            </Button>
           </Typography>
           <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
             {theme.palette.mode === 'dark' ? (

@@ -1,8 +1,8 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 
-type CtxProps = { toggleColorMode: () => void; mode: string };
+type CtxProps = { toggleColorMode: () => void };
 
 const ColorModeContext = React.createContext({} as CtxProps);
 
@@ -10,19 +10,28 @@ export function useColorMode() {
   return useContext(ColorModeContext);
 }
 
+const GHOST_THEME_MODE = 'ghost_theme_mode';
+
+type EMode = 'light' | 'dark';
+
 function ColorModeProvider(props: { children: React.ReactNode }) {
-  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
-  const colorMode = React.useMemo(
+  const [mode, setMode] = useState<EMode>(
+    (localStorage.getItem(GHOST_THEME_MODE) as EMode) || 'light'
+  );
+  const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
         setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
       },
-      mode,
     }),
     []
   );
 
-  const theme = React.useMemo(
+  useEffect(() => {
+    mode && localStorage.setItem(GHOST_THEME_MODE, mode);
+  }, [mode]);
+
+  const theme = useMemo(
     () =>
       createTheme({
         palette: {
