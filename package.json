@@ -1,9 +1,14 @@
 {
-  "name": "dashboard-app",
+  "name": "@iad-os/ghost-oauth2-playground",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
     "@iad-os/react-ghost-auth": "^0.1.14",
+    "@monaco-editor/react": "^4.3.1",
+    "@mui/icons-material": "^5.1.0",
+    "@mui/material": "^5.1.0",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -13,6 +18,7 @@
     "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
     "history": "^5.1.0",
+    "md5": "^2.3.0",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -46,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/md5": "^2.3.1",
     "@types/query-string": "^6.3.0",
     "prettier": "2.4.1"
   }

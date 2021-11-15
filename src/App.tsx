@@ -7,6 +7,7 @@ import axios from 'axios';
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
+import GhostAppBar from './components/GhostAppBar';
 import ProtectedRoutes from './Routes/ProtectedRoutes';
 import PublicRoutes from './Routes/PublicRoutes';
 
@@ -17,18 +18,19 @@ const defaultAuthOpts: AuthenticationOptions = {
     'https://login.iad2.eu/auth/realms/iad-developers/protocol/openid-connect/token',
   client_id: 'react-ghost-oidc',
   requested_scopes: 'openid',
-  redirect_uri: 'http://localhost:3000/protected',
+  redirect_uri: 'http://localhost:3001/protected',
   end_session_endpoint:
     'https://login.iad2.eu/auth/realms/iad-developers/protocol/openid-connect/logout',
   realm: 'iad-developers',
   serviceUrl: '',
-  redirect_logout_uri: 'http://localhost:3000',
+  redirect_logout_uri: 'http://localhost:3001',
 };
 
 function App() {
   return (
     <>
       <AuthenticationProvider options={defaultAuthOpts} axios={axios}>
+        <GhostAppBar />
         <Routes>
           <Route path="/protected/*" element={<ProtectedRoutes />} />
           <Route path="/public/*" element={<PublicRoutes />} />
