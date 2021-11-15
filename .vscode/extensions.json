@@ -8,6 +8,7 @@
     "apollographql.vscode-apollo",
     "dsznajder.es7-react-js-snippets",
     "mikestead.dotenv",
-    "ms-vsliveshare.vsliveshare"
+    "ms-vsliveshare.vsliveshare",
+    "naumovs.color-highlight"
   ]
 }

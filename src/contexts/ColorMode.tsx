@@ -34,25 +34,27 @@ function ColorModeProvider(props: { children: React.ReactNode }) {
   const theme = useMemo(
     () =>
       createTheme({
-        palette: {
-          mode,
-          ...(mode === 'light'
-            ? {}
-            : {
-                // palette values for dark mode
-                primary: {
-                  main: '#f8b133',
-                },
-                background: {
-                  default: '#282C34',
-                  paper: '#282C34',
-                },
-                text: {
-                  primary: '#fff',
-                  secondary: '#f8b133',
-                },
-              }),
-        },
+        ...(mode === 'light' && {}),
+        ...(mode === 'dark' && {
+          palette: {
+            mode,
+            // palette values for dark mode
+            primary: {
+              main: '#f8b133',
+            },
+            secondary: {
+              main: '#ffefd6',
+            },
+            background: {
+              default: '#282C34',
+              paper: '#21252b',
+            },
+            text: {
+              primary: '#f6f7f8',
+              secondary: '#ffefd6',
+            },
+          },
+        }),
       }),
     [mode]
   );
