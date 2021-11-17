@@ -34,7 +34,7 @@ authConfig.providers[PROVIDERS.GOOGLE] = {
   end_session_endpoint: '',
   redirect_logout_uri: 'http://localhost:3000',
   access_type: 'offline',
-  client_secret: '',
+  client_secret: process.env.REACT_APP_GOOGLE_SECRET,
 };
 
 export default authConfig;
