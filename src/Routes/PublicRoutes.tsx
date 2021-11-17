@@ -1,9 +1,12 @@
-import { Public } from '@iad-os/react-ghost-auth';
+import { Public, useAuthentication } from '@iad-os/react-ghost-auth';
 import React from 'react';
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import { Link } from 'react-router-dom';
+import Login from '../components/Login';
 
 function PublicRouters() {
+  const { status } = useAuthentication();
+
   return (
     <Public>
       <Routes>
@@ -15,6 +18,10 @@ function PublicRouters() {
               <Link to={'/protected'}>Go to Protected page</Link>
             </>
           }
+        />
+        <Route
+          path="/login"
+          element={status === 'LOGGED' ? <Navigate to="/public" /> : <Login />}
         />
       </Routes>
     </Public>

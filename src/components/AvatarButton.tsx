@@ -39,7 +39,9 @@ function AvatarButton() {
 
   function getAvatarUrl() {
     const userInfoData = userInfo();
-    if (userInfoData && userInfoData.email) {
+    if (userInfoData && userInfoData.picture) {
+      return userInfoData.picture;
+    } else if (userInfoData && userInfoData.email) {
       return `https://www.gravatar.com/avatar/${md5(userInfoData.email)}`;
     } else if (userInfoData && userInfoData.name) {
       return `https://eu.ui-avatars.com/api/?name=${(
@@ -66,7 +68,7 @@ function AvatarButton() {
         transition
         disablePortal
       >
-        {({ TransitionProps, placement }) => (
+        {({ TransitionProps, placement }: any) => (
           <Grow
             {...TransitionProps}
             style={{

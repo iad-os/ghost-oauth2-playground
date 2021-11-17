@@ -14,8 +14,8 @@ import { useColorMode } from '../contexts/ColorMode';
 import AvatarButton from './AvatarButton';
 import { deepmerge } from '@mui/utils';
 
-function GhostAppBar() {
-  const { login, isAuthenticated } = useAuthentication();
+function NavBar() {
+  const { changeStatus, isAuthenticated } = useAuthentication();
 
   const theme = useTheme();
 
@@ -47,7 +47,7 @@ function GhostAppBar() {
           }),
         } as Theme)
       ),
-    [theme.palette.mode]
+    [theme]
   );
 
   return (
@@ -74,7 +74,7 @@ function GhostAppBar() {
               )}
             </IconButton>
             {!isAuthenticated() && (
-              <Button color="inherit" onClick={login}>
+              <Button color="inherit" onClick={() => changeStatus('LOGIN')}>
                 Login
               </Button>
             )}
@@ -86,4 +86,4 @@ function GhostAppBar() {
   );
 }
 
-export default GhostAppBar;
+export default NavBar;

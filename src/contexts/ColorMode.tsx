@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -12,11 +12,10 @@ export function useColorMode() {
 
 const GHOST_THEME_MODE = 'ghost_theme_mode';
 
-type EMode = 'light' | 'dark';
-
 function ColorModeProvider(props: { children: React.ReactNode }) {
-  const [mode, setMode] = useState<EMode>(
-    (localStorage.getItem(GHOST_THEME_MODE) as EMode) || 'light'
+  const [mode, setMode] = useState<Theme['palette']['mode']>(
+    (localStorage.getItem(GHOST_THEME_MODE) as Theme['palette']['mode']) ||
+      'light'
   );
   const colorMode = useMemo(
     () => ({
