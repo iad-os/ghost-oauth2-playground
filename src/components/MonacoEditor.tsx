@@ -62,16 +62,17 @@ const monacoOptions = {
   minimap: { enabled: false },
 };
 
-function MonacoEditor(props: Omit<EditorProps, 'options' | 'theme'>) {
-  const theme = useTheme();
+const MonacoEditor: React.FC<Omit<EditorProps, 'options' | 'theme'>> =
+  props => {
+    const theme = useTheme();
 
-  return (
-    <Editor
-      {...props}
-      theme={theme.palette.mode === 'dark' ? 'vs-dark' : ''}
-      options={monacoOptions}
-    />
-  );
-}
+    return (
+      <Editor
+        {...props}
+        theme={theme.palette.mode === 'dark' ? 'vs-dark' : ''}
+        options={monacoOptions}
+      />
+    );
+  };
 
 export default MonacoEditor;

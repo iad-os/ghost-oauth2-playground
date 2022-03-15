@@ -15,7 +15,7 @@ const style = {
   p: 4,
 };
 
-function ModalLogin() {
+const ModalLogin: React.FC = () => {
   const { status, changeStatus } = useAuthentication();
 
   const [open, setOpen] = useState(status === 'LOGIN');
@@ -46,6 +46,6 @@ function ModalLogin() {
       </Box>
     </Modal>
   );
-}
+};
 
 export default ModalLogin;

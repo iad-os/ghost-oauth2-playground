@@ -1,18 +1,22 @@
-import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
+import {
+  createTheme,
+  Theme,
+  ThemeProvider as ThemeProviderMUI,
+} from '@mui/material/styles';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 
-type CtxProps = { toggleColorMode: () => void };
+type AppThemeProps = { toggleColorMode: () => void };
 
-const ColorModeContext = React.createContext({} as CtxProps);
+const AppTheme = React.createContext({} as AppThemeProps);
 
-export function useColorMode() {
-  return useContext(ColorModeContext);
+export function useAppTheme() {
+  return useContext(AppTheme);
 }
 
 const GHOST_THEME_MODE = 'ghost_theme_mode';
 
-function ColorModeProvider(props: { children: React.ReactNode }) {
+const AppThemeProvider: React.FC<{ children: React.ReactNode }> = props => {
   const [mode, setMode] = useState<Theme['palette']['mode']>(
     (localStorage.getItem(GHOST_THEME_MODE) as Theme['palette']['mode']) ||
       'light'
@@ -59,13 +63,13 @@ function ColorModeProvider(props: { children: React.ReactNode }) {
   );
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
+    <AppTheme.Provider value={colorMode}>
+      <ThemeProviderMUI theme={theme}>
         <CssBaseline />
         {props.children}
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+      </ThemeProviderMUI>
+    </AppTheme.Provider>
   );
-}
+};
 
-export default ColorModeProvider;
+export default AppThemeProvider;

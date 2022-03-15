@@ -14,7 +14,7 @@ import {
 import md5 from 'md5';
 import { useNavigate } from 'react-router-dom';
 
-function AvatarButton() {
+const AvatarButton: React.FC = () => {
   const { logout, userInfo } = useAuthentication();
   const navigate = useNavigate();
 
@@ -92,6 +92,6 @@ function AvatarButton() {
       </Popper>
     </>
   );
-}
+};
 
 export default AvatarButton;

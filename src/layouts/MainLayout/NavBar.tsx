@@ -10,16 +10,16 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useColorMode } from '../contexts/ColorMode';
-import AvatarButton from './AvatarButton';
+import { useAppTheme } from '../../contexts/AppTheme';
+import AvatarButton from '../../components/AvatarButton';
 import { deepmerge } from '@mui/utils';
 
-function NavBar() {
+const NavBar: React.FC = () => {
   const { changeStatus, isAuthenticated } = useAuthentication();
 
   const theme = useTheme();
 
-  const { toggleColorMode } = useColorMode();
+  const { toggleColorMode } = useAppTheme();
 
   const navigate = useNavigate();
 
@@ -84,6 +84,6 @@ function NavBar() {
       </Box>
     </ThemeProvider>
   );
-}
+};
 
 export default NavBar;

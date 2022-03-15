@@ -1,29 +1,19 @@
 import AuthenticationProvider, {
-  LogginIn,
   AutoLogin,
+  LogginIn,
 } from '@iad-os/react-ghost-auth';
 import axios from 'axios';
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import './App.css';
 import authConfig from './authConfig';
 import ModalLogin from './components/ModalLogin';
-import NavBar from './components/NavBar';
-import ColorModeProvider from './contexts/ColorMode';
-import ProtectedRoutes from './Routes/ProtectedRoutes';
-import PublicRoutes from './Routes/PublicRoutes';
+import AppThemeProvider from './contexts/AppTheme';
+import Routes from './routes/Routes';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <ColorModeProvider>
+    <AppThemeProvider>
       <AuthenticationProvider config={authConfig} axios={axios}>
-        <NavBar />
-        <Routes>
-          <Route path="/protected/*" element={<ProtectedRoutes />} />
-          <Route path="/public/*" element={<PublicRoutes />} />
-          <Route path="/" element={<Navigate to="/public" />} />
-          <Route path="/*" element={<h2>⚠ OOPS... Page not found! ⚠</h2>} />
-        </Routes>
+        <Routes />
         <LogginIn>
           <h2>🔄 Loading...</h2>
         </LogginIn>
@@ -31,8 +21,8 @@ function App() {
           <ModalLogin />
         </AutoLogin>
       </AuthenticationProvider>
-    </ColorModeProvider>
+    </AppThemeProvider>
   );
-}
+};
 
 export default App;

@@ -5,7 +5,7 @@ import { PROVIDERS } from '../authConfig';
 import GoogleIcon from '@mui/icons-material/Google';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-function Login() {
+const Login: React.FC = () => {
   const { login } = useAuthentication();
 
   function handleKeyCloak() {
@@ -33,6 +33,6 @@ function Login() {
       </Button>
     </Stack>
   );
-}
+};
 
 export default Login;
