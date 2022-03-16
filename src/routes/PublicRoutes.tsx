@@ -1,14 +1,13 @@
-import { Public } from '@iad-os/react-ghost-auth';
 import React from 'react';
 import { Link, RouteObject, useRoutes } from 'react-router-dom';
-import MiniamlLayout from '../layouts/MinimalLayout';
+import PublicLayout from '../layouts/PublicLayout ';
 
 const PublicRouters: React.FC = () => {
-  return <Public>{useRoutes([routes])}</Public>;
+  return useRoutes([routes]);
 };
 
 const routes: RouteObject = {
-  element: <MiniamlLayout />,
+  element: <PublicLayout />,
   children: [
     {
       path: '/',
