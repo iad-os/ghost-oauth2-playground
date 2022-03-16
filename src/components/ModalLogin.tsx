@@ -1,9 +1,9 @@
 import { useAuthentication } from '@iad-os/react-ghost-auth';
-import { Modal, Box, Typography } from '@mui/material';
+import { Modal, Box, Typography, SxProps } from '@mui/material';
 import React, { useState } from 'react';
 import Login from './Login';
 
-const style = {
+const sxModal: SxProps = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
@@ -32,7 +32,7 @@ const ModalLogin: React.FC = () => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Box sx={sxModal}>
         <Typography
           id="modal-modal-title"
           variant="h6"
