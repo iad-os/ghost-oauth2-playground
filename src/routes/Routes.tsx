@@ -1,4 +1,3 @@
-import { useAuthentication } from '@iad-os/react-ghost-auth';
 import React from 'react';
 import { RouteObject, useRoutes } from 'react-router';
 import { Navigate } from 'react-router-dom';
@@ -7,9 +6,6 @@ import ProtectedRouters from './ProtectedRoutes';
 import PublicRouters from './PublicRoutes';
 
 const Routes: React.FC = () => {
-  const { status } = useAuthentication();
-  console.log(status);
-
   return useRoutes([routes]);
 };
 

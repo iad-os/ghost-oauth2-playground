@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import MonacoEditor from '../components/MonacoEditor';
 
 const HOSTNAME = window.location.hostname;
@@ -13,6 +14,7 @@ const Credentials = () => {
 
   return (
     <>
+      <Link to={'/public'}>Go to Publiic page</Link>
       <span>
         <h2>🔑 Credentials</h2>
       </span>
