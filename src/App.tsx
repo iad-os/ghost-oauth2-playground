@@ -13,17 +13,17 @@ import Routes from './routes/Routes';
 const App: React.FC = () => {
   const navigate = useNavigate();
 
+  function handleRoute(route: string) {
+    const url = new URL(route);
+    navigate(url.pathname, { replace: true });
+  }
+
   return (
     <AppThemeProvider>
       <AuthenticationProvider
         config={authConfig}
         axios={axios}
-        onRoute={route => {
-          const local = `${window.location.protocol}//${
-            window.location.hostname
-          }${window.location.port ? `:${window.location.port}` : ''}`;
-          navigate(route.replace(local, ''), { replace: true });
-        }}
+        onRoute={handleRoute}
       >
         <Routes />
         <LogginIn>
