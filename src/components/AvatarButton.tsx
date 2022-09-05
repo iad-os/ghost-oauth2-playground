@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useAuthentication } from '@iad-os/react-ghost-auth';
+
 import {
   Avatar,
   Button,
@@ -13,9 +13,12 @@ import {
 } from '@mui/material';
 import md5 from 'md5';
 import { useNavigate } from 'react-router-dom';
+import { useAuthentication, useUserInfo } from '@iad-os/react-ghost-auth';
 
 const AvatarButton: React.FC = () => {
-  const { logout, userInfo } = useAuthentication();
+  const { logout } = useAuthentication();
+  const userInfo = useUserInfo<any>();
+
   const navigate = useNavigate();
 
   const anchorRef = useRef<HTMLDivElement>(null);
@@ -38,18 +41,17 @@ const AvatarButton: React.FC = () => {
   }
 
   function getAvatarUrl() {
-    const userInfoData = userInfo();
-    if (userInfoData && userInfoData.picture) {
-      return userInfoData.picture;
-    } else if (userInfoData && userInfoData.email) {
-      return `https://www.gravatar.com/avatar/${md5(userInfoData.email)}`;
-    } else if (userInfoData && userInfoData.name) {
+    if (userInfo && userInfo.picture) {
+      return userInfo.picture;
+    } else if (userInfo && userInfo.email) {
+      return `https://www.gravatar.com/avatar/${md5(userInfo.email)}`;
+    } else if (userInfo && userInfo.name) {
       return `https://eu.ui-avatars.com/api/?name=${(
-        userInfoData.name as string
+        userInfo.name as string
       ).replace(' ', '+')}`;
-    } else if (userInfoData) {
+    } else if (userInfo) {
       return `https://eu.ui-avatars.com/api/?name=${
-        userInfoData.preferred_username as string
+        userInfo.preferred_username as string
       }`;
     }
   }
