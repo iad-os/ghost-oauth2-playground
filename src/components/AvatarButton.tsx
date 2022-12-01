@@ -1,19 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
+import { useAuthentication, useUserInfo } from '@iad-os/react-ghost-auth';
 import {
   Avatar,
+  Box,
   Button,
-  ClickAwayListener,
   Divider,
-  Grow,
   MenuItem,
   MenuList,
-  Paper,
   Popper,
 } from '@mui/material';
 import md5 from 'md5';
 import { useNavigate } from 'react-router-dom';
-import { useAuthentication, useUserInfo } from '@iad-os/react-ghost-auth';
 
 const AvatarButton: React.FC = () => {
   const { logout } = useAuthentication();
@@ -21,24 +19,14 @@ const AvatarButton: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const anchorRef = useRef<HTMLDivElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const [open, setOpen] = useState<boolean>(false);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
 
-  function handleToggle() {
-    setOpen(prevOpen => !prevOpen);
-  }
-
-  function handleClose(event: Event) {
-    if (
-      anchorRef.current &&
-      anchorRef.current.contains(event.target as HTMLElement)
-    ) {
-      return;
-    }
-
-    setOpen(false);
-  }
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popper' : undefined;
 
   function getAvatarUrl() {
     if (userInfo && userInfo.picture) {
@@ -58,39 +46,28 @@ const AvatarButton: React.FC = () => {
 
   return (
     <>
-      <div ref={anchorRef}>
-        <Button onClick={handleToggle}>
-          <Avatar alt="avatar" src={getAvatarUrl()} />
-        </Button>
-      </div>
+      <Button oaria-describedby={id} onClick={handleClick}>
+        <Avatar alt="avatar" src={getAvatarUrl()} />
+      </Button>
+
       <Popper
+        id={id}
         open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
+        anchorEl={anchorEl}
         transition
-        disablePortal
+        nonce={undefined}
+        onResize={undefined}
+        onResizeCapture={undefined}
       >
-        {({ TransitionProps, placement }: any) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="split-button-menu">
-                  <MenuItem onClick={() => navigate('/protected/users')}>
-                    User info
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem onClick={logout}>Logout</MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
+        <Box>
+          <MenuList id="split-button-menu">
+            <MenuItem onClick={() => navigate('/protected/users')}>
+              User info
+            </MenuItem>
+            <Divider />
+            <MenuItem onClick={logout}>Logout</MenuItem>
+          </MenuList>
+        </Box>
       </Popper>
     </>
   );

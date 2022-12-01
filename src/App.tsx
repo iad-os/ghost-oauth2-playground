@@ -24,6 +24,7 @@ const App: React.FC = () => {
         config={authConfig}
         axios={axios}
         onRoute={handleRoute}
+        onError={mes => alert(mes)}
       >
         <Routes />
         <LogginIn>
