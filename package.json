@@ -1,6 +1,6 @@
 {
-  "name": "@iad-os/ghost-oauth2-playground",
-  "version": "0.1.0",
+  "name": "project-name",
+  "version": "project-version",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",

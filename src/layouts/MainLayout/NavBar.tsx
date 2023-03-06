@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppTheme } from '../../contexts/AppTheme';
 import AvatarButton from '../../components/AvatarButton';
 import { deepmerge } from '@mui/utils';
+import { projectName } from '../../constants';
 
 const NavBar: React.FC = () => {
   const { changeStatus, isAuthenticated } = useAuthentication();
@@ -59,7 +60,7 @@ const NavBar: React.FC = () => {
               <Button
                 onClick={() => navigate(isAuthenticated() ? '/protected' : '/')}
               >
-                <Typography>👻 Oauth2 Playground</Typography>
+                <Typography>{projectName}</Typography>
               </Button>
             </Box>
             <IconButton
