@@ -2,7 +2,7 @@ import { RequireAuth } from '@iad-os/react-ghost-auth';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-const ProtectedLayout: React.FC = () => {
+const ProtectedContainer: React.FC = () => {
   return (
     <RequireAuth>
       <Outlet />
@@ -10,4 +10,4 @@ const ProtectedLayout: React.FC = () => {
   );
 };
 
-export default ProtectedLayout;
+export default ProtectedContainer;

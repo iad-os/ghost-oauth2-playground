@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, RouteObject, useRoutes } from 'react-router-dom';
-import PublicLayout from '../layouts/PublicLayout ';
+import PublicContainer from '../containers/PublicContainer';
 
 const PublicRouters: React.FC = () => {
   return useRoutes([routes]);
 };
 
 const routes: RouteObject = {
-  element: <PublicLayout />,
+  element: <PublicContainer />,
   children: [
     {
       path: '/',

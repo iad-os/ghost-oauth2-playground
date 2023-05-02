@@ -3,7 +3,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import NavBar from './NavBar';
 
-const MainLayout: React.FC = () => {
+const RootContainer: React.FC = () => {
   return (
     <>
       <NavBar />
@@ -14,4 +14,4 @@ const MainLayout: React.FC = () => {
   );
 };
 
-export default MainLayout;
+export default RootContainer;

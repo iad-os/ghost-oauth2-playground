@@ -10,7 +10,7 @@ import ModalLogin from './components/ModalLogin';
 import AppThemeProvider from './contexts/AppTheme';
 import Routes from './routes/Routes';
 
-const App: React.FC = () => {
+const App = () => {
   const navigate = useNavigate();
 
   function handleRoute(route: string) {
@@ -19,22 +19,20 @@ const App: React.FC = () => {
   }
 
   return (
-    <AppThemeProvider>
-      <AuthenticationProvider
-        config={authConfig}
-        axios={axios}
-        onRoute={handleRoute}
-        onError={mes => alert(mes)}
-      >
-        <Routes />
-        <LogginIn>
-          <h2>🔄 Loading...</h2>
-        </LogginIn>
-        <AutoLogin>
-          <ModalLogin />
-        </AutoLogin>
-      </AuthenticationProvider>
-    </AppThemeProvider>
+    <AuthenticationProvider
+      config={authConfig}
+      axios={axios}
+      onRoute={handleRoute}
+      onError={mes => alert(mes)}
+    >
+      <Routes />
+      <LogginIn>
+        <h2>🔄 Loading...</h2>
+      </LogginIn>
+      <AutoLogin>
+        <ModalLogin />
+      </AutoLogin>
+    </AuthenticationProvider>
   );
 };
 

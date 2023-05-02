@@ -21,6 +21,7 @@ authConfig.providers[PROVIDERS.KEYCLOAK] = {
   end_session_endpoint:
     'https://login.iad2.eu/auth/realms/iad-developers/protocol/openid-connect/logout',
   redirect_logout_uri: 'http://localhost:3000',
+  pkce: true,
 };
 
 authConfig.providers[PROVIDERS.GOOGLE] = {
@@ -34,7 +35,7 @@ authConfig.providers[PROVIDERS.GOOGLE] = {
   end_session_endpoint: '',
   redirect_logout_uri: 'http://localhost:3000',
   access_type: 'offline',
-  client_secret: process.env.REACT_APP_GOOGLE_SECRET,
+  client_secret: import.meta.env.VITE_GOOGLE_SECRET,
 };
 
 export default authConfig;
