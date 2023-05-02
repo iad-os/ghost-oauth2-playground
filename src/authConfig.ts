@@ -36,6 +36,7 @@ authConfig.providers[PROVIDERS.GOOGLE] = {
   redirect_logout_uri: 'http://localhost:3000',
   access_type: 'offline',
   client_secret: import.meta.env.VITE_GOOGLE_SECRET,
+  pkce: true,
 };
 
 export default authConfig;
