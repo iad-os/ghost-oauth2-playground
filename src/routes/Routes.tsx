@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteObject, useRoutes } from 'react-router';
 import { Navigate } from 'react-router-dom';
-import MainLayout from '../layouts/MainLayout';
+import RootContainer from '../containers/RootContainer';
 import ProtectedRouters from './ProtectedRoutes';
 import PublicRouters from './PublicRoutes';
 
@@ -10,7 +10,7 @@ const Routes: React.FC = () => {
 };
 
 const routes: RouteObject = {
-  element: <MainLayout />,
+  element: <RootContainer />,
   children: [
     {
       path: '/protected/*',

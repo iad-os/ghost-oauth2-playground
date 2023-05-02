@@ -1,6 +1,6 @@
 // material-ui
 import { Box, SxProps } from '@mui/material';
-import LinearProgress from '@mui/material/LinearProgress';
+import { LinearProgress } from '@mui/material';
 
 const mainSx: SxProps = {
   position: 'fixed',

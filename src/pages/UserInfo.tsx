@@ -13,7 +13,7 @@ const UserInfo = () => {
       <MonacoEditor
         height="40vh"
         language="json"
-        value={JSON.stringify(userInfo(), null, 2)}
+        value={JSON.stringify(userInfo, null, 2)}
       />
     </>
   );

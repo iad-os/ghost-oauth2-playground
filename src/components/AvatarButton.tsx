@@ -8,7 +8,7 @@ import {
   Divider,
   MenuItem,
   MenuList,
-  Popper,
+  Popover,
 } from '@mui/material';
 import md5 from 'md5';
 import { useNavigate } from 'react-router-dom';
@@ -44,32 +44,42 @@ const AvatarButton: React.FC = () => {
     }
   }
 
+  const onMenuItemClick = (fn: Function) => {
+    setAnchorEl(() => null);
+    fn();
+  };
+
   return (
-    <>
+    <Box position={'relative'}>
       <Button oaria-describedby={id} onClick={handleClick}>
         <Avatar alt="avatar" src={getAvatarUrl()} />
       </Button>
 
-      <Popper
+      <Popover
         id={id}
         open={open}
         anchorEl={anchorEl}
-        transition
-        nonce={undefined}
-        onResize={undefined}
-        onResizeCapture={undefined}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        onClose={() => setAnchorEl(null)}
       >
         <Box>
           <MenuList id="split-button-menu">
-            <MenuItem onClick={() => navigate('/protected/users')}>
+            <MenuItem
+              onClick={() =>
+                onMenuItemClick(() => navigate('/protected/users'))
+              }
+            >
               User info
             </MenuItem>
             <Divider />
             <MenuItem onClick={logout}>Logout</MenuItem>
           </MenuList>
         </Box>
-      </Popper>
-    </>
+      </Popover>
+    </Box>
   );
 };
 

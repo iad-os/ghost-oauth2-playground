@@ -1,21 +1,26 @@
 import React, { lazy } from 'react';
 import { RouteObject, useRoutes } from 'react-router';
 import Loadable from '../core/Loadable';
-import ProtectedLayout from '../layouts/ProtectedLayout';
+import ProtectedContainer from '../containers/ProtectedContainer';
+import { Link } from 'react-router-dom';
 
 const UserInfo = Loadable(lazy(() => import('../pages/UserInfo')));
-const Credentials = Loadable(lazy(() => import('../pages/Credentials')));
 
 const ProtectedRouters: React.FC = () => {
   return useRoutes([routes]);
 };
 
 const routes: RouteObject = {
-  element: <ProtectedLayout />,
+  element: <ProtectedContainer />,
   children: [
     {
       path: '/',
-      element: <Credentials />,
+      element: (
+        <>
+          <h2>Protected page 🔐</h2>
+          <Link to={'/public'}>Go to Public page</Link>
+        </>
+      ),
     },
     {
       path: '/users',
