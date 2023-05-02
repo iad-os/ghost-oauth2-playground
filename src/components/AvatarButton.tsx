@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { useAuthentication, useUserInfo } from '@iad-os/react-ghost-auth';
 import {
@@ -28,7 +28,7 @@ const AvatarButton: React.FC = () => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
-  function getAvatarUrl() {
+  const getAvatarUrl = useCallback(() => {
     if (userInfo && userInfo.picture) {
       return userInfo.picture;
     } else if (userInfo && userInfo.email) {
@@ -42,7 +42,7 @@ const AvatarButton: React.FC = () => {
         userInfo.preferred_username as string
       }`;
     }
-  }
+  }, [userInfo]);
 
   const onMenuItemClick = (fn: Function) => {
     setAnchorEl(() => null);
