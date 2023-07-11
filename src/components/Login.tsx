@@ -1,36 +1,17 @@
 import { useAuthentication } from '@iad-os/react-ghost-auth';
 import { Button, Stack } from '@mui/material';
 import React from 'react';
-import { PROVIDERS } from '../authConfig';
-import GoogleIcon from '@mui/icons-material/Google';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Login: React.FC = () => {
-  const { login } = useAuthentication();
-
-  function handleKeyCloak() {
-    login(PROVIDERS.KEYCLOAK);
-  }
-  function handleGoogle() {
-    login(PROVIDERS.GOOGLE);
-  }
+  const { login, providers } = useAuthentication();
 
   return (
     <Stack spacing={2}>
-      <Button
-        onClick={handleKeyCloak}
-        variant="outlined"
-        startIcon={<AccountCircleIcon />}
-      >
-        IAD OIDC
-      </Button>
-      <Button
-        onClick={handleGoogle}
-        variant="outlined"
-        startIcon={<GoogleIcon />}
-      >
-        Google
-      </Button>
+      {providers.map(p => (
+        <Button onClick={() => login(p.issuer)} variant="outlined">
+          {p.name}
+        </Button>
+      ))}
     </Stack>
   );
 };
