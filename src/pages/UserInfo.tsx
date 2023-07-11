@@ -1,5 +1,4 @@
 import { useUserInfo } from '@iad-os/react-ghost-auth';
-import React from 'react';
 import MonacoEditor from '../components/MonacoEditor';
 
 const UserInfo = () => {

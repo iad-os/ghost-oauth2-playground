@@ -24,19 +24,4 @@ authConfig.providers[PROVIDERS.KEYCLOAK] = {
   pkce: true,
 };
 
-authConfig.providers[PROVIDERS.GOOGLE] = {
-  name: PROVIDERS.GOOGLE,
-  authorization_endpoint: 'https://accounts.google.com/o/oauth2/auth',
-  token_endpoint: 'https://oauth2.googleapis.com/token',
-  client_id:
-    '1005015699782-a3hn7f2akfk1pvdoh1mnjlid145p4nsj.apps.googleusercontent.com',
-  requested_scopes: 'profile email openid',
-  redirect_uri: 'http://localhost:3000/protected',
-  end_session_endpoint: '',
-  redirect_logout_uri: 'http://localhost:3000',
-  access_type: 'offline',
-  client_secret: import.meta.env.VITE_GOOGLE_SECRET,
-  pkce: true,
-};
-
 export default authConfig;
