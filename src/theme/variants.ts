@@ -20,6 +20,12 @@ const lightVariant: VariantType = {
 export const darkVariant: VariantType = {
   palette: {
     mode: 'dark',
+    primary: {
+      main: '#f56000',
+    },
+    text: {
+      secondary: '#f56000',
+    },
   },
 };
 

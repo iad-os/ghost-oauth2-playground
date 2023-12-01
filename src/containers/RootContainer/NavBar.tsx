@@ -8,14 +8,28 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  styled,
   useTheme,
 } from '@mui/material';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AvatarButton from '../../components/AvatarButton';
 import { useAppTheme } from '../../contexts/AppTheme';
 
-const NavBar: React.FC = () => {
+const Title = styled(Typography)(({ theme }) => ({
+  marginRight: 2,
+  [theme.breakpoints.up('xs')]: {
+    display: 'none',
+  },
+  [theme.breakpoints.up('sm')]: {
+    display: 'flex',
+  },
+  fontWeight: 700,
+  letterSpacing: '.3rem',
+  color: 'inherit',
+  textDecoration: 'none',
+}));
+
+const NavBar = () => {
   const { changeStatus, isAuthenticated } = useAuthentication();
 
   const theme = useTheme();
@@ -34,7 +48,9 @@ const NavBar: React.FC = () => {
               variant="text"
               color="inherit"
             >
-              <Typography>👻 Oauth2 Playground</Typography>
+              <Title variant="h6" noWrap>
+                👻 Oauth2 Playground
+              </Title>
             </Button>
           </Box>
           <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
