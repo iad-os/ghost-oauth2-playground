@@ -28,4 +28,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 To learn Material UI, check out the [Material UI documentation](https://mui.com/).
 
-To learn Formik, check out the [Formik documentation](https://formik.org/)
+To learn Formik, check out the [Formik documentation](https://formik.org/docs/overview)
