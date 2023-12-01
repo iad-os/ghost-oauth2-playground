@@ -39,15 +39,3 @@ export default variants;
 export type VariantType = {
   palette: PaletteOptions;
 };
-
-export type DialogStyleProps = {
-  backgroundPaper: string;
-};
-export type ToolbarStyleProps = {
-  deepModeBg: string;
-};
-
-export type CardStyleProps = {
-  secondary: string;
-  primary: string;
-};

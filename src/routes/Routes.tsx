@@ -1,11 +1,10 @@
-import React from 'react';
 import { RouteObject, useRoutes } from 'react-router';
 import { Navigate } from 'react-router-dom';
 import RootContainer from '../containers/RootContainer';
 import ProtectedRouters from './ProtectedRoutes';
 import PublicRouters from './PublicRoutes';
 
-const Routes: React.FC = () => {
+const Routes = () => {
   return useRoutes([routes]);
 };
 

@@ -1,13 +1,13 @@
-import React, { lazy } from 'react';
-import { RouteObject, useRoutes } from 'react-router';
-import Loadable from '../core/Loadable';
-import ProtectedContainer from '../containers/ProtectedContainer';
-import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import { lazy } from 'react';
+import { RouteObject, useRoutes } from 'react-router';
+import { Link } from 'react-router-dom';
+import ProtectedContainer from '../containers/ProtectedContainer';
+import Loadable from '../core/Loadable';
 
 const UserInfo = Loadable(lazy(() => import('../pages/UserInfo')));
 
-const ProtectedRouters: React.FC = () => {
+const ProtectedRouters = () => {
   return useRoutes([routes]);
 };
 

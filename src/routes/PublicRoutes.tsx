@@ -1,9 +1,8 @@
-import React from 'react';
+import { Typography } from '@mui/material';
 import { Link, RouteObject, useRoutes } from 'react-router-dom';
 import PublicContainer from '../containers/PublicContainer';
-import { Typography } from '@mui/material';
 
-const PublicRouters: React.FC = () => {
+const PublicRouters = () => {
   return useRoutes([routes]);
 };
 
