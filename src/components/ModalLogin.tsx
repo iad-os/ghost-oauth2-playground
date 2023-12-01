@@ -1,22 +1,17 @@
 import { useAuthentication } from '@iad-os/react-ghost-auth';
-import { Modal, Box, Typography, SxProps } from '@mui/material';
-import React, { useState } from 'react';
-import Login from './Login';
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Stack,
+} from '@mui/material';
+import { useState } from 'react';
 
-const sxModal: SxProps = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
-const ModalLogin: React.FC = () => {
+const ModalLogin = () => {
   const { status, changeStatus } = useAuthentication();
+
+  const { login, providers } = useAuthentication();
 
   const [open, setOpen] = useState(status === 'LOGIN');
 
@@ -26,25 +21,18 @@ const ModalLogin: React.FC = () => {
   };
 
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={sxModal}>
-        <Typography
-          id="modal-modal-title"
-          variant="h6"
-          component="h2"
-          align="center"
-          pb={4}
-        >
-          Login
-        </Typography>
-        <Login />
-      </Box>
-    </Modal>
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle id="alert-dialog-title">{'Login'}</DialogTitle>
+      <DialogContent>
+        <Stack spacing={2}>
+          {providers.map(p => (
+            <Button onClick={() => login(p.issuer)} variant="outlined">
+              {p.name}
+            </Button>
+          ))}
+        </Stack>
+      </DialogContent>
+    </Dialog>
   );
 };
 

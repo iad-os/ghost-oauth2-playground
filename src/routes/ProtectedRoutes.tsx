@@ -3,6 +3,7 @@ import { RouteObject, useRoutes } from 'react-router';
 import Loadable from '../core/Loadable';
 import ProtectedContainer from '../containers/ProtectedContainer';
 import { Link } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 const UserInfo = Loadable(lazy(() => import('../pages/UserInfo')));
 
@@ -17,7 +18,7 @@ const routes: RouteObject = {
       path: '/',
       element: (
         <>
-          <h2>Protected page 🔐</h2>
+          <Typography variant="h4">Protected page 🔐</Typography>
           <Link to={'/public'}>Go to Public page</Link>
         </>
       ),

@@ -1,10 +1,8 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import {
-  createTheme,
-  Theme,
-  ThemeProvider as ThemeProviderMUI,
-} from '@mui/material/styles';
+import { ThemeProvider as ThemeProviderMUI } from '@mui/material/styles';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { THEMES } from '../theme/variants';
+import createTheme from '../theme';
 
 type AppThemeProps = { toggleColorMode: () => void };
 
@@ -16,15 +14,14 @@ export function useAppTheme() {
 
 const GHOST_THEME_MODE = 'ghost_theme_mode';
 
-const AppThemeProvider: React.FC<{ children: React.ReactNode }> = props => {
-  const [mode, setMode] = useState<Theme['palette']['mode']>(
-    (localStorage.getItem(GHOST_THEME_MODE) as Theme['palette']['mode']) ||
-      'light'
+const AppThemeProvider = (props: React.PropsWithChildren) => {
+  const [mode, setMode] = useState<keyof typeof THEMES>(
+    (localStorage.getItem(GHOST_THEME_MODE) as keyof typeof THEMES) ?? 'LIGHT'
   );
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode(prevMode => (prevMode === 'LIGHT' ? 'DARK' : 'LIGHT'));
       },
     }),
     []
@@ -34,37 +31,9 @@ const AppThemeProvider: React.FC<{ children: React.ReactNode }> = props => {
     mode && localStorage.setItem(GHOST_THEME_MODE, mode);
   }, [mode]);
 
-  const theme = useMemo(
-    () =>
-      createTheme({
-        ...(mode === 'light' && {}),
-        ...(mode === 'dark' && {
-          palette: {
-            mode,
-            // palette values for dark mode
-            primary: {
-              main: '#f8b133',
-            },
-            secondary: {
-              main: '#ffefd6',
-            },
-            background: {
-              default: '#282C34',
-              paper: '#21252b',
-            },
-            text: {
-              primary: '#f6f7f8',
-              secondary: '#ffefd6',
-            },
-          },
-        }),
-      }),
-    [mode]
-  );
-
   return (
     <AppTheme.Provider value={colorMode}>
-      <ThemeProviderMUI theme={theme}>
+      <ThemeProviderMUI theme={createTheme(mode)}>
         <CssBaseline />
         {props.children}
       </ThemeProviderMUI>

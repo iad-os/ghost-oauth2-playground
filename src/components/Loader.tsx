@@ -1,20 +1,19 @@
 // material-ui
-import { Box, SxProps } from '@mui/material';
-import { LinearProgress } from '@mui/material';
+import { Box, LinearProgress, styled } from '@mui/material';
 
-const mainSx: SxProps = {
+const LoaderBox = styled(Box)({
   position: 'fixed',
   top: 0,
   left: 0,
   zIndex: 1301,
   width: '100%',
-};
+});
 
-const Loader: React.FC = () => {
+const Loader = () => {
   return (
-    <Box sx={mainSx}>
+    <LoaderBox>
       <LinearProgress color="primary" />
-    </Box>
+    </LoaderBox>
   );
 };
 

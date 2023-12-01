@@ -1,7 +1,6 @@
 import React, { lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
 import Loadable from './core/Loadable';
 import AppThemeProvider from './contexts/AppTheme';
 
