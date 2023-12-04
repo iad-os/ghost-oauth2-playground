@@ -1,9 +1,10 @@
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { lazy } from 'react';
 import { RouteObject, useRoutes } from 'react-router';
 import { Link } from 'react-router-dom';
 import ProtectedContainer from '../containers/ProtectedContainer';
 import Loadable from '../core/Loadable';
+import FormPage from '../pages/FormPage';
 
 const UserInfo = Loadable(lazy(() => import('../pages/UserInfo')));
 
@@ -24,8 +25,16 @@ const routes: RouteObject = {
       ),
     },
     {
+      path: '/forms',
+      element: <FormPage />,
+    },
+    {
       path: '/users',
       element: <UserInfo />,
+    },
+    {
+      path: '/*',
+      element: <Box>Page not found</Box>,
     },
   ],
 };

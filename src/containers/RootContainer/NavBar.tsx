@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   IconButton,
+  Stack,
   Toolbar,
   Typography,
   styled,
@@ -42,7 +43,12 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky">
         <Toolbar>
-          <Box sx={{ flexGrow: 1 }}>
+          <Stack
+            display={'flex'}
+            direction={'row'}
+            alignItems={'center'}
+            sx={{ flexGrow: 1 }}
+          >
             <Button
               onClick={() => navigate(isAuthenticated() ? '/protected' : '/')}
               variant="text"
@@ -52,7 +58,14 @@ const NavBar = () => {
                 👻 Oauth2 Playground
               </Title>
             </Button>
-          </Box>
+            <Button
+              onClick={() => navigate('/protected/forms')}
+              variant="text"
+              color="inherit"
+            >
+              Form
+            </Button>
+          </Stack>
           <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
             {theme.palette.mode === 'dark' ? (
               <Brightness7Icon />
