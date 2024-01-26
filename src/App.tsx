@@ -1,6 +1,6 @@
 import AuthenticationProvider, {
   AutoLogin,
-  LogginIn,
+  Logging,
 } from '@iad-os/react-ghost-auth';
 import { useNavigate } from 'react-router-dom';
 import authConfig from './authConfig';
@@ -20,12 +20,12 @@ const App = () => {
       config={authConfig}
       onRoute={handleRoute}
       onError={mes => alert(mes)}
-      saveOnLocalStorage
+      //saveOnLocalStorage
+      overrideRedirectUri={lo => lo.href}
+      enableLog
     >
       <Routes />
-      <LogginIn>
-        <h2>🔄 Loading...</h2>
-      </LogginIn>
+      <Logging in={<h2>🔄 Loading...</h2>} />
       <AutoLogin>
         <ModalLogin />
       </AutoLogin>

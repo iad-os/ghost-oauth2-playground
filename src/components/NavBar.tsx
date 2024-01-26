@@ -13,8 +13,8 @@ import {
   useTheme,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import AvatarButton from '../../components/AvatarButton';
-import { useAppTheme } from '../../contexts/AppTheme';
+import AvatarButton from './AvatarButton';
+import { useAppTheme } from '../contexts/AppTheme';
 
 const Title = styled(Typography)(({ theme }) => ({
   marginRight: 2,
@@ -31,7 +31,7 @@ const Title = styled(Typography)(({ theme }) => ({
 }));
 
 const NavBar = () => {
-  const { changeStatus, isAuthenticated } = useAuthentication();
+  const { isAuthenticated, login } = useAuthentication();
 
   const theme = useTheme();
 
@@ -74,7 +74,7 @@ const NavBar = () => {
             )}
           </IconButton>
           {!isAuthenticated() && (
-            <Button color="inherit" onClick={() => changeStatus('LOGIN')}>
+            <Button color="inherit" onClick={() => login()}>
               Login
             </Button>
           )}

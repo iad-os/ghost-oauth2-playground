@@ -9,7 +9,7 @@ import {
 import { useState } from 'react';
 
 const ModalLogin = () => {
-  const { status, changeStatus } = useAuthentication();
+  const { status } = useAuthentication();
 
   const { login, providers } = useAuthentication();
 
@@ -17,7 +17,6 @@ const ModalLogin = () => {
 
   const handleClose = () => {
     setOpen(false);
-    changeStatus('INIT');
   };
 
   return (
