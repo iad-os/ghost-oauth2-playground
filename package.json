@@ -6,7 +6,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@iad-os/react-ghost-auth": "^2.0.1",
+    "@iad-os/react-ghost-auth": "^2.1.2",
     "@monaco-editor/react": "^4.6.0",
     "@mui/icons-material": "^5.15.6",
     "@mui/material": "^5.15.6",
