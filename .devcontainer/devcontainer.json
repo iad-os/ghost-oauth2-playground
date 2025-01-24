@@ -4,25 +4,25 @@
   "name": "Node.js & TypeScript",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-18-bullseye",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bullseye",
   "mounts": [
     "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
   ],
   "customizations": {
-		"vscode": {
-			"extensions": [
+    "vscode": {
+      "extensions": [
         "clinyong.vscode-css-modules",
         "eamodio.gitlens",
         "esbenp.prettier-vscode",
-        "mhutchie.git-graph",
         "usernamehw.errorlens",
         "dsznajder.es7-react-js-snippets",
         "mikestead.dotenv",
         "ms-vsliveshare.vsliveshare",
-        "naumovs.color-highlight"
-			]
-		}
-	},
+        "naumovs.color-highlight",
+        "mhutchie.git-graph"
+      ]
+    }
+  },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   //"forwardPorts": [
   //	3000

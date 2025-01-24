@@ -1,9 +1,10 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Grid from '@mui/material/Grid2';
 
 type FormType = {
   firstName: string;
@@ -39,7 +40,7 @@ const FormPage = () => {
       <Typography variant="h4">Form example</Typography>
       <form onSubmit={formik.handleSubmit}>
         <Grid container>
-          <Grid item xs={12} sm={6} p={2}>
+          <Grid p={2} size={{ xs: 12, sm: 6 }}>
             <TextField
               label={'First Name'}
               type="text"
@@ -49,7 +50,7 @@ const FormPage = () => {
               {...formik.getFieldProps('firstName')}
             />
           </Grid>
-          <Grid item xs={12} sm={6} p={2}>
+          <Grid p={2} size={{ xs: 12, sm: 6 }}>
             <TextField
               label={'Last Name'}
               type="text"
@@ -59,7 +60,7 @@ const FormPage = () => {
               {...formik.getFieldProps('lastName')}
             />
           </Grid>
-          <Grid item xs={12} sm={6} p={2}>
+          <Grid p={2} size={{ xs: 12, sm: 6 }}>
             <TextField
               label={'Email'}
               type="email"
@@ -69,7 +70,7 @@ const FormPage = () => {
               {...formik.getFieldProps('email')}
             />
           </Grid>
-          <Grid item xs={12} sm={6} p={2}>
+          <Grid p={2} size={{ xs: 12, sm: 6 }}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 label="Date of birth"
@@ -80,7 +81,8 @@ const FormPage = () => {
                     helperText: formik.errors.dateBirth,
                   },
                 }}
-                {...formik.getFieldProps('dateBirth')}
+                maxDate={dayjs()}
+                value={dayjs(formik.values.dateBirth)}
                 onChange={(ev: dayjs.Dayjs | null) => {
                   ev && formik.setFieldValue('dateBirth', ev.toDate());
                 }}
@@ -88,8 +90,7 @@ const FormPage = () => {
             </LocalizationProvider>
           </Grid>
           <Grid
-            item
-            xs={12}
+            p={2}
             display={'flex'}
             flexDirection={'row'}
             justifyContent={'flex-end'}

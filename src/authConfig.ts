@@ -1,20 +1,20 @@
 import { AuthenticationConfig } from '@iad-os/react-ghost-auth';
 
+const realm = 'realm';
+const baseUrl = 'http://hostname/auth/realms/';
+
 const authConfig: AuthenticationConfig = {
   providers: [
     {
-      name: 'IAD KEYCLOAK',
-      issuer: 'https://login.iad2.eu/auth/realms/iad-developers',
-      authorization_endpoint:
-        'https://login.iad2.eu/auth/realms/iad-developers/protocol/openid-connect/auth',
-      token_endpoint:
-        'https://login.iad2.eu/auth/realms/iad-developers/protocol/openid-connect/token',
-      client_id: 'react-ghost-oidc',
+      name: '-',
+      issuer: '-',
+      authorization_endpoint: `${baseUrl}${realm}/protocol/openid-connect/auth`,
+      token_endpoint: `${baseUrl}${realm}/protocol/openid-connect/token`,
+      client_id: 'client-id',
       requested_scopes: 'openid',
-      redirect_uri: 'http://localhost:3000/protected',
-      end_session_endpoint:
-        'https://login.iad2.eu/auth/realms/iad-developers/protocol/openid-connect/logout',
-      redirect_logout_uri: 'http://localhost:3000',
+      redirect_uri: 'http://localhost:3100/protected',
+      end_session_endpoint: `${baseUrl}${realm}/protocol/openid-connect/logout`,
+      redirect_logout_uri: 'http://localhost:3100',
       pkce: true,
       defualt: true,
     },

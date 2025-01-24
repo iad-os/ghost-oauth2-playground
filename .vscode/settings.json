@@ -10,14 +10,6 @@
   "typescript.referencesCodeLens.enabled": true,
   "git.ignoreLimitWarning": true,
   "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#333841",
-    "activityBar.activeBorder": "#f6f7f8",
-    "activityBar.background": "#282C34",
-    "activityBar.foreground": "#f8b133",
-    "activityBar.inactiveForeground": "#f6f7f8",
-    "activityBarBadge.background": "#e1e42d",
-    "activityBarBadge.foreground": "#000000",
-    "statusBar.background": "#f8b133",
-    "statusBar.foreground": "#282C34"
+    "activityBar.activeBorder": "#f6f7f8"
   }
 }
