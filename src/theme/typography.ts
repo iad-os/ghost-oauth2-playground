@@ -1,13 +1,12 @@
-import { TypographyOptions } from '@mui/material/styles/createTypography';
-
+import { TypographyVariantsOptions } from '@mui/material/styles';
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {}
 }
 
-interface MthTypographyOptions extends TypographyOptions {}
+interface MthTypographyOptions extends TypographyVariantsOptions {}
 
 const typography: MthTypographyOptions = {
-  fontFamily: ['Roboto'].join(','),
+  fontFamily: ['Roboto', 'Arial'].join(','),
 };
 
 export default typography;

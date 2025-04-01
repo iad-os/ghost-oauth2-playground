@@ -1,10 +1,9 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography, Grid } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Grid from '@mui/material/Grid2';
 
 type FormType = {
   firstName: string;
