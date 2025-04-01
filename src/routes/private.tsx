@@ -1,8 +1,12 @@
 import { RequireAuth } from '@iad-os/react-ghost-auth';
 import { Typography } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { createFileRoute, Outlet } from '@tanstack/react-router';
 
-const ProtectedContainer = () => {
+export const Route = createFileRoute('/private')({
+  component: RouteComponent,
+});
+
+function RouteComponent() {
   return (
     <RequireAuth
       autologin
@@ -13,6 +17,4 @@ const ProtectedContainer = () => {
       <Outlet />
     </RequireAuth>
   );
-};
-
-export default ProtectedContainer;
+}

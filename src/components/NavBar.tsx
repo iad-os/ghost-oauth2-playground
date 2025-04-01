@@ -12,9 +12,9 @@ import {
   styled,
   useTheme,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import AvatarButton from './AvatarButton';
 import { useAppTheme } from '../contexts/AppTheme';
+import { useNavigate } from '@tanstack/react-router';
 
 const Title = styled(Typography)(({ theme }) => ({
   marginRight: 2,
@@ -50,7 +50,7 @@ const NavBar = () => {
             sx={{ flexGrow: 1 }}
           >
             <Button
-              onClick={() => navigate(isAuthenticated() ? '/protected' : '/')}
+              onClick={() => navigate({ to: '/public' })}
               variant="text"
               color="inherit"
             >
@@ -59,7 +59,7 @@ const NavBar = () => {
               </Title>
             </Button>
             <Button
-              onClick={() => navigate('/protected/forms')}
+              onClick={() => navigate({ to: '/private/form' })}
               variant="text"
               color="inherit"
             >

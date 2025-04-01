@@ -1,22 +1,24 @@
 import { AuthenticationConfig } from '@iad-os/react-ghost-auth';
-
+/*
 const realm = 'realm';
 const baseUrl = 'http://hostname/auth/realms/';
-
+*/
 const authConfig: AuthenticationConfig = {
   providers: [
     {
-      name: '-',
-      issuer: '-',
-      authorization_endpoint: `${baseUrl}${realm}/protocol/openid-connect/auth`,
-      token_endpoint: `${baseUrl}${realm}/protocol/openid-connect/token`,
-      client_id: 'client-id',
-      requested_scopes: 'openid',
-      redirect_uri: 'http://localhost:3100/protected',
-      end_session_endpoint: `${baseUrl}${realm}/protocol/openid-connect/logout`,
+      issuer: 'https://login.iadengage.com/auth/realms/iadengage-com',
+      name: 'IAD_Engage',
+      authorization_endpoint:
+        'https://login.iadengage.com/auth/realms/iadengage-com/protocol/openid-connect/auth',
+      token_endpoint:
+        'https://login.iadengage.com/auth/realms/iadengage-com/protocol/openid-connect/token',
       redirect_logout_uri: 'http://localhost:3100',
+      client_id: 'prod_iadengage_com',
+      requested_scopes: 'profile openid',
+      end_session_endpoint:
+        'https://login.iadengage.com/auth/realms/iadengage-com/protocol/openid-connect/logout',
+      redirect_uri: 'http://localhost:3100/protected',
       pkce: true,
-      defualt: true,
     },
   ],
 };

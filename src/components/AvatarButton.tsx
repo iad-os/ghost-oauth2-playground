@@ -11,7 +11,7 @@ import {
   Popover,
 } from '@mui/material';
 import md5 from 'md5';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 
 const AvatarButton: React.FC = () => {
   const { logout } = useAuthentication();
@@ -69,7 +69,7 @@ const AvatarButton: React.FC = () => {
           <MenuList id="split-button-menu">
             <MenuItem
               onClick={() =>
-                onMenuItemClick(() => navigate('/protected/users'))
+                onMenuItemClick(() => navigate({ to: '/private/users' }))
               }
             >
               User info

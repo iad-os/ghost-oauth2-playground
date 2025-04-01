@@ -1,14 +1,11 @@
 import { Container } from '@mui/material';
-import { Outlet } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 
-const RootContainer = () => {
+const RootContainer: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <>
       <NavBar />
-      <Container fixed>
-        <Outlet />
-      </Container>
+      <Container fixed>{children}</Container>
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { createFileRoute } from '@tanstack/react-router';
 import { Box, Button, TextField, Typography, Grid } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -25,7 +26,11 @@ const formSchema = Yup.object().shape<Record<keyof FormType, Yup.AnySchema>>({
   dateBirth: Yup.date().required(),
 });
 
-const FormPage = () => {
+export const Route = createFileRoute('/private/form')({
+  component: RouteComponent,
+});
+
+function RouteComponent() {
   const formik = useFormik<Partial<FormType>>({
     initialValues: {},
     validationSchema: formSchema,
@@ -102,6 +107,4 @@ const FormPage = () => {
       </form>
     </Box>
   );
-};
-
-export default FormPage;
+}
