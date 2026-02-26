@@ -25,7 +25,11 @@ const ModalLogin = () => {
       <DialogContent>
         <Stack spacing={2}>
           {providers.map(p => (
-            <Button onClick={() => login(p.issuer)} variant="outlined">
+            <Button
+              key={`${p.issuer}-${p.name}`}
+              onClick={() => login(p.issuer)}
+              variant="outlined"
+            >
               {p.name}
             </Button>
           ))}
