@@ -3,10 +3,10 @@ import { Typography } from '@mui/material';
 import { createFileRoute, Outlet } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/private')({
-  component: RouteComponent,
+  component: PrivateRouteComponent,
 });
 
-function RouteComponent() {
+export function PrivateRouteComponent() {
   return (
     <RequireAuth
       autologin

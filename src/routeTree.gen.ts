@@ -8,118 +8,159 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as PublicRouteImport } from './routes/public'
+import { Route as PrivateRouteImport } from './routes/private'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as PublicIndexRouteImport } from './routes/public/index'
+import { Route as PrivateIndexRouteImport } from './routes/private/index'
+import { Route as PrivateUsersRouteImport } from './routes/private/users'
+import { Route as PrivateFormRouteImport } from './routes/private/form'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as PublicImport } from './routes/public'
-import { Route as PrivateImport } from './routes/private'
-import { Route as IndexImport } from './routes/index'
-import { Route as PublicIndexImport } from './routes/public/index'
-import { Route as PrivateIndexImport } from './routes/private/index'
-import { Route as PrivateUsersImport } from './routes/private/users'
-import { Route as PrivateFormImport } from './routes/private/form'
-
-// Create/Update Routes
-
-const PublicRoute = PublicImport.update({
+const PublicRoute = PublicRouteImport.update({
   id: '/public',
   path: '/public',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const PrivateRoute = PrivateImport.update({
+const PrivateRoute = PrivateRouteImport.update({
   id: '/private',
   path: '/private',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const PublicIndexRoute = PublicIndexImport.update({
+const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PublicRoute,
 } as any)
-
-const PrivateIndexRoute = PrivateIndexImport.update({
+const PrivateIndexRoute = PrivateIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PrivateRoute,
 } as any)
-
-const PrivateUsersRoute = PrivateUsersImport.update({
+const PrivateUsersRoute = PrivateUsersRouteImport.update({
   id: '/users',
   path: '/users',
   getParentRoute: () => PrivateRoute,
 } as any)
-
-const PrivateFormRoute = PrivateFormImport.update({
+const PrivateFormRoute = PrivateFormRouteImport.update({
   id: '/form',
   path: '/form',
   getParentRoute: () => PrivateRoute,
 } as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/private': typeof PrivateRouteWithChildren
+  '/public': typeof PublicRouteWithChildren
+  '/private/form': typeof PrivateFormRoute
+  '/private/users': typeof PrivateUsersRoute
+  '/private/': typeof PrivateIndexRoute
+  '/public/': typeof PublicIndexRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/private/form': typeof PrivateFormRoute
+  '/private/users': typeof PrivateUsersRoute
+  '/private': typeof PrivateIndexRoute
+  '/public': typeof PublicIndexRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/private': typeof PrivateRouteWithChildren
+  '/public': typeof PublicRouteWithChildren
+  '/private/form': typeof PrivateFormRoute
+  '/private/users': typeof PrivateUsersRoute
+  '/private/': typeof PrivateIndexRoute
+  '/public/': typeof PublicIndexRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/private'
+    | '/public'
+    | '/private/form'
+    | '/private/users'
+    | '/private/'
+    | '/public/'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/private/form' | '/private/users' | '/private' | '/public'
+  id:
+    | '__root__'
+    | '/'
+    | '/private'
+    | '/public'
+    | '/private/form'
+    | '/private/users'
+    | '/private/'
+    | '/public/'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  PrivateRoute: typeof PrivateRouteWithChildren
+  PublicRoute: typeof PublicRouteWithChildren
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
+    '/public': {
+      id: '/public'
+      path: '/public'
+      fullPath: '/public'
+      preLoaderRoute: typeof PublicRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/private': {
       id: '/private'
       path: '/private'
       fullPath: '/private'
-      preLoaderRoute: typeof PrivateImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof PrivateRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/public': {
-      id: '/public'
-      path: '/public'
-      fullPath: '/public'
-      preLoaderRoute: typeof PublicImport
-      parentRoute: typeof rootRoute
-    }
-    '/private/form': {
-      id: '/private/form'
-      path: '/form'
-      fullPath: '/private/form'
-      preLoaderRoute: typeof PrivateFormImport
-      parentRoute: typeof PrivateImport
-    }
-    '/private/users': {
-      id: '/private/users'
-      path: '/users'
-      fullPath: '/private/users'
-      preLoaderRoute: typeof PrivateUsersImport
-      parentRoute: typeof PrivateImport
-    }
-    '/private/': {
-      id: '/private/'
+    '/': {
+      id: '/'
       path: '/'
-      fullPath: '/private/'
-      preLoaderRoute: typeof PrivateIndexImport
-      parentRoute: typeof PrivateImport
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/public/': {
       id: '/public/'
       path: '/'
       fullPath: '/public/'
-      preLoaderRoute: typeof PublicIndexImport
-      parentRoute: typeof PublicImport
+      preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/private/': {
+      id: '/private/'
+      path: '/'
+      fullPath: '/private/'
+      preLoaderRoute: typeof PrivateIndexRouteImport
+      parentRoute: typeof PrivateRoute
+    }
+    '/private/users': {
+      id: '/private/users'
+      path: '/users'
+      fullPath: '/private/users'
+      preLoaderRoute: typeof PrivateUsersRouteImport
+      parentRoute: typeof PrivateRoute
+    }
+    '/private/form': {
+      id: '/private/form'
+      path: '/form'
+      fullPath: '/private/form'
+      preLoaderRoute: typeof PrivateFormRouteImport
+      parentRoute: typeof PrivateRoute
     }
   }
 }
-
-// Create and export the route tree
 
 interface PrivateRouteChildren {
   PrivateFormRoute: typeof PrivateFormRoute
@@ -147,119 +188,11 @@ const PublicRouteChildren: PublicRouteChildren = {
 const PublicRouteWithChildren =
   PublicRoute._addFileChildren(PublicRouteChildren)
 
-export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/private': typeof PrivateRouteWithChildren
-  '/public': typeof PublicRouteWithChildren
-  '/private/form': typeof PrivateFormRoute
-  '/private/users': typeof PrivateUsersRoute
-  '/private/': typeof PrivateIndexRoute
-  '/public/': typeof PublicIndexRoute
-}
-
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/private/form': typeof PrivateFormRoute
-  '/private/users': typeof PrivateUsersRoute
-  '/private': typeof PrivateIndexRoute
-  '/public': typeof PublicIndexRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/private': typeof PrivateRouteWithChildren
-  '/public': typeof PublicRouteWithChildren
-  '/private/form': typeof PrivateFormRoute
-  '/private/users': typeof PrivateUsersRoute
-  '/private/': typeof PrivateIndexRoute
-  '/public/': typeof PublicIndexRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/private'
-    | '/public'
-    | '/private/form'
-    | '/private/users'
-    | '/private/'
-    | '/public/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/private/form' | '/private/users' | '/private' | '/public'
-  id:
-    | '__root__'
-    | '/'
-    | '/private'
-    | '/public'
-    | '/private/form'
-    | '/private/users'
-    | '/private/'
-    | '/public/'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  PrivateRoute: typeof PrivateRouteWithChildren
-  PublicRoute: typeof PublicRouteWithChildren
-}
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PrivateRoute: PrivateRouteWithChildren,
   PublicRoute: PublicRouteWithChildren,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/private",
-        "/public"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/private": {
-      "filePath": "private.tsx",
-      "children": [
-        "/private/form",
-        "/private/users",
-        "/private/"
-      ]
-    },
-    "/public": {
-      "filePath": "public.tsx",
-      "children": [
-        "/public/"
-      ]
-    },
-    "/private/form": {
-      "filePath": "private/form.tsx",
-      "parent": "/private"
-    },
-    "/private/users": {
-      "filePath": "private/users.tsx",
-      "parent": "/private"
-    },
-    "/private/": {
-      "filePath": "private/index.tsx",
-      "parent": "/private"
-    },
-    "/public/": {
-      "filePath": "public/index.tsx",
-      "parent": "/public"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
