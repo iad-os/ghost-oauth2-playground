@@ -173,48 +173,6 @@ Run:
 docker run --rm -p 8080:80 ghost-oauth2-playground
 ```
 
-## Audit best practice (struttura + qualita)
-
-Verifica effettuata sul repository corrente (stato attuale):
-
-### Aspetti positivi
-
-- buona separazione per dominio (`routes`, `components`, `theme`, `api`)
-- TypeScript strict attivo (`strict`, `noUnusedLocals`, `noUnusedParameters`)
-- routing moderno tipizzato con TanStack
-- Docker multi-stage corretto per SPA statica
-
-### Gap critici da correggere
-
-1. Build TypeScript fallisce:
-   - errore su `src/authConfig.ts`: proprieta provider non compatibili col tipo `AuthenticationConfig`
-2. Lint non operativo:
-   - ESLint v9 richiede `eslint.config.*`, ma progetto usa `.eslintrc.cjs`
-3. Pipeline OpenAPI incompleta:
-   - script usa `openapi-typescript` e `openapi-react-query` ma non sono dipendenze installate
-
-### Gap importanti (non bloccanti ma rilevanti)
-
-1. Config auth incoerente:
-   - `redirect_uri` impostato su `/protected` (route non presente)
-   - typo `defualt` in provider config
-2. Accessibilita e robustezza UI:
-   - prop `oaria-describedby` (typo) in `AvatarButton`
-   - lista provider login senza `key` React in `ModalLogin`
-3. Hygiene runtime:
-   - `console.log` in `src/theme/index.ts`
-   - uso `alert(...)` per error handling auth in root route
-4. Test strategy assente:
-   - presente `setupTests.ts`, ma non ci sono test e script `test`
-
-## Priorita consigliate
-
-1. Ripristinare green build (`npm run build`) sistemando `authConfig.ts`
-2. Migrare configurazione ESLint a flat config (v9) e aggiungere script `lint`
-3. Allineare script OpenAPI: dipendenze, output path e naming env
-4. Introdurre smoke test minimi su route pubblica/protetta
-5. Rendere `authConfig` environment-driven (`.env`, fallback sicuri)
-
 ## Riferimento Context7
 
 README riscritto seguendo principi di documentazione pratica in stile Context7:
